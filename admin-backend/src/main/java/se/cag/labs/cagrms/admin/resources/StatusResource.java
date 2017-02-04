@@ -40,7 +40,7 @@ public class StatusResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Service> getServiceStatus() {
 
-        List services = new ArrayList();
+        List<Service> services = new ArrayList();
         services.add(Service.builder().name("CurrentRace").alive(isAlive(urlCurrentRaceBaseURI)).build());
         services.add(Service.builder().name("LeaderBoard").alive(isAlive(urlLeaderboardBaseURI)).build());
         services.add(Service.builder().name("UserManager").alive(isAlive(urlUserManagerBaseURI)).build());
