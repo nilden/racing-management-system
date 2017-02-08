@@ -45,11 +45,11 @@ public class StatusResource {
     public List<se.cag.labs.cagrms.admin.api.HealthInfo> getHealthChecks() {
         log.info("GET /status");
 
-        List<HealthInfo> statuses = services.stream()
+        List<HealthInfo> healthInfos = services.stream()
                 .map(s -> healthCheck(s))
                 .collect(Collectors.toList());
 
-        return ModelMapper.createServiceResponse(statuses);
+        return ModelMapper.createServiceResponse(healthInfos);
     }
 
     private HealthInfo healthCheck(String target) {
