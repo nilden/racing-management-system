@@ -1,6 +1,7 @@
 package se.cag.labs.cagrms.admin.resources.mapper;
 
 import se.cag.labs.cagrms.admin.api.Race;
+import se.cag.labs.cagrms.admin.resources.apimodel.HealthInfo;
 import se.cag.labs.cagrms.admin.resources.apimodel.User;
 import se.cag.labs.cagrms.admin.resources.apimodel.UserResult;
 
@@ -45,4 +46,18 @@ public final class ModelMapper {
                 .build();
     }
 
+    public static List<se.cag.labs.cagrms.admin.api.HealthInfo> createServiceResponse(List<HealthInfo> statuses) {
+        return statuses.stream()
+                .map(ModelMapper::mapService)
+                .collect(Collectors.toList());
+    }
+
+    private static se.cag.labs.cagrms.admin.api.HealthInfo mapService(HealthInfo healthInfo) {
+        return se.cag.labs.cagrms.admin.api.HealthInfo.builder()
+                .name(healthInfo.getName())
+                .serviceUp("UP".equals(healthInfo.getStatus()) ? true : false)
+                .dbUp("UP".equals(healthInfo.getStatus()) ? true : false)
+                .info( new String []{"Not implemented!"})
+                .build();
+    }
 }
